@@ -11,9 +11,9 @@ console.log(`Вартість всих товарів: ${sum}`);
 
 console.log(`Округлення до цілого в меншу сторону: ${Math.floor(vegetables) + Math.floor(meat) + Math.floor(fish)}`);
 
-console.log(`Округлення суми товарів до сотень: ${Math.ceil(sum / 100) * 100}`);
+console.log(`Округлення суми товарів до сотень: ${Math.round(sum / 100) * 100}`);
 
-console.log(`Чи являється число парним: ${Boolean(!(Math.floor(vegetables + meat + fish) % 2))}`);
+console.log(`Чи являється число парним: ${!(Math.floor(sum) % 2)}`);
 
 console.log(`Решта від 500грн: ${500 - sum}`);
 
@@ -22,7 +22,9 @@ console.log(`Середне значення цін округлене до де
 let sale = Math.round((Math.random() * 100));
 console.log(`Знижка : ${sale}%`);
 
-console.log(`Сума до сплати зі знижкою: ${(sum * ((100 - sale) / 100)).toFixed(2)}`);
+let sumDiscount = (sum * ((100 - sale) / 100)).toFixed(2);
+console.log(`Сума до сплати зі знижкою: ${sumDiscount}`);
 
-let profit = (sum * ((100 - sale) / 100)) - (sum / 2);
-console.log(`Прибуток: ${profit}`);
+let atCost = (sum / 2);
+let profit = sumDiscount - atCost;
+console.log(`Прибуток: ${profit.toFixed(2)}`);
