@@ -18,10 +18,12 @@ let evenNumb = confirm("Do you need to miss the even numbers?");
 let sum = 0;
 
 for (i = firstNumb; i <= secondNumb; i++) {
-    if (evenNumb) {
-        sum += (i % 2) ? i : 0;
+    let isOdd = i % 2;
+    if (evenNumb && isOdd) {
+        sum += 0;
     } else {
         sum += i;
     }
 }
+
 console.log(sum);
