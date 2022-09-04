@@ -3,9 +3,11 @@
 // Приклади: 1236 -> 6, 987 -> 9, 385 -> 8
 function getMaxDigit(number) {
     let numbMax = 0;
-    let arrNumbers = [...'' + number]
+    let arrNumbers = number.toString();
     for (i = 0; i <= arrNumbers.length; i++) {
-        numbMax = (numbMax < arrNumbers[i]) ? arrNumbers[i] : numbMax;
+        if (numbMax < arrNumbers[i]) {
+            numbMax = arrNumbers[i];
+        }
     }
     return numbMax
 };
@@ -32,7 +34,8 @@ function firstWordUppercase(name) {
 // 4. Створити функцію, яка вираховує суму, що залишається після оплати податку від зарабітньої плати. 
 // (Податок = 18% + 1.5% -> 19.5%). Приклад: 1000 -> 805
 function deleteTax(salary) {
-    const tax = (100 - (18 + 1.5)) / 100;
+    let taxValue = (18 + 1.5);
+    const tax = (100 - taxValue) / 100;
     let salaryAfterTax = (salary * tax).toFixed(2)
     return salaryAfterTax
 };
@@ -51,8 +54,9 @@ function getRandomNumber(min = 1, max = 10) {
 function countLetter(letter, word) {
     let arrLetter = word.toLowerCase().split('');
     let count = 0;
+    let letterToLowerCase = letter.toLowerCase();
     for (i = 0; i < arrLetter.length; i++) {
-        if (letter.toLowerCase() == arrLetter[i]) {
+        if (letterToLowerCase == arrLetter[i]) {
             count += 1;
         }
     }
@@ -64,15 +68,16 @@ function countLetter(letter, word) {
 // Приклад: convertCurrency("100$") -> 2500 грн. або convertCurrency("2500UAH") -> 100$
 // Врахуйте, інші валюти не конвертуються, потрібно виводити помилку, і також регістр uah не має значення.
 function convertCurrency(value) {
-    let UahToDoll = 36;
-    let DollToUah = 0.277;
-    if (value.slice(-1) === "$") {
-        return (value.slice(0, -1) * UahToDoll).toFixed(2);
-    } else if (value.toLowerCase().slice(-3) === "uah") {
-        return (value.slice(0, -3) * DollToUah).toFixed(2);
-    } else {
-        return "Error"
+    let uahToDoll = 36;
+    let dollToUah = 0.277;
+    let isDollar = value.slice(-1);
+    let isUah = value.toLowerCase().slice(-3);
+    if (isDollar === "$") {
+        return `${(value.slice(0, -1) * uahToDoll).toFixed(2)}UAH `;
+    } else if (isUah === "uah") {
+        return `${(value.slice(0, -3) * dollToUah).toFixed(2)}$`;
     }
+    return "Error"
 };
 
 
@@ -81,7 +86,7 @@ function convertCurrency(value) {
 function getRandomPassword(lengthPass = 8) {
     let regenPass = '';
     for(i = 0; i < lengthPass; i++) {
-        regenPass += (Math.floor(Math.random() * 10));
+        regenPass += (getRandomNumber(1, 10));
     }
     return regenPass;
 };
@@ -90,8 +95,10 @@ function getRandomPassword(lengthPass = 8) {
 // 9. Створіть функцію, яка видаляє всі букви з речення. Приклад: deleteLetters('a', "blablabla") -> "blblbl"
 function deleteLetters(letter, word) {
     let deleteLetter = '';
+    let letterToLowerCase = letter.toLowerCase();
+    let wordToLowerCase = word[i].toLowerCase();
     for (i = 0; i < word.length; i++) {
-        if (letter.toLowerCase() !== word[i].toLowerCase()) {
+        if (letterToLowerCase !== wordToLowerCase) {
             deleteLetter += word[i]
         }
     }
@@ -102,19 +109,19 @@ function deleteLetters(letter, word) {
 // 10. Створіть функцію, яка перевіряє, чи є слово паліндромом.
 // Приклад: isPalyndrom("мадам") -> true, isPalyndrom("кокос") -> false, isPalyndrom("Я несу гусеня") -> true
 function isPalyndrom(word) {
-    word = word.toLowerCase().replace(/ /g, '');
-    const reverseWord = word.split('').reverse().join('');
-    return reverseWord === word;
+    let wordWithoutSpaces = word.toLowerCase().replace(/ /g, '');
+    const reverseWord = wordWithoutSpaces.split('').reverse().join('');
+    return reverseWord === wordWithoutSpaces;
 };
 
 
 document.writeln(`Функція №1: ${getMaxDigit(12945)} <br>`);
 document.writeln(`Функція №2: ${findResultExponent(2, 5)} <br>`);
 document.writeln(`Функція №3: ${firstWordUppercase("boB")} <br>`);
-document.writeln(`Функція №4: ${deleteTax(12453)} <br>`);
+document.writeln(`Функція №4: ${deleteTax(1000)} <br>`);
 document.writeln(`Функція №5: ${getRandomNumber(20, 29)} <br>`);
 document.writeln(`Функція №6: ${countLetter("а", "Асталавіста")} <br>`);
-document.writeln(`Функція №7: ${convertCurrency("100UAH")} <br>`);
+document.writeln(`Функція №7: ${convertCurrency("100$")} <br>`);
 document.writeln(`Функція №8: ${getRandomPassword(6)} <br>`);
 document.writeln(`Функція №9: ${deleteLetters('a', "blablabla")} <br>`);
-document.writeln(`Функція №10: ${isPalyndrom("мадам")} <br>`);
+document.writeln(`Функція №10: ${isPalyndrom("кит на морі романтик")} <br>`);
