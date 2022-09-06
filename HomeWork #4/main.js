@@ -4,12 +4,13 @@ const themes = ["Диференційне рівняння", "Теорія ав�
 
 const marks = [4, 5, 5, 3, 4, 5];
 
+const pairs = [];
+
 // 1. Розділіть студентів на пари(хлопець + дівчина) для работи над проєктом. 
 // У вас повинен вийти вкладений масив з парами студентів: [["Олександр", "Олена"], [..], [...]];
 function getPairs(studentName) {
     let men = studentName.filter((name) => (name.slice(-1) === "а"));
     let women = studentName.filter((name) => (name.slice(-1) !== "а"));
-    let pairs = [];
     for (i = 0; i < men.length; i++) {
         pairs.push([men[i], women[i]])
     }
@@ -42,18 +43,18 @@ function studentGetAssessment(students, marks) {
 // 4. Поставте кожній парі випадкову оцінку(від 1 до 5) за проєкт(тут функція буде нечистою, але не повинна мутувати массив): 
 // [["Олександр і Олена", "Теорія автоматів", 5], [...], [...]]
 
-function randomGetAssessment(pairsStudents) {
+function randomGetAssessment(pairs) {
     let minAssesment = 1;
-    let maxassesment = 5;
-    let randomGetAssessment = pairsStudents.slice(0);
-    console.log(randomGetAssessment);
-    for (i = 0; i < randomGetAssessment.length; i++) {
-        let randomValue = Math.floor(Math.random() * (maxassesment - minAssesment + 1) + minAssesment);
-        randomGetAssessment[i].push(randomValue);
-    }
-    return randomGetAssessment
-}
+    let maxAssesment = 5;
+    let randomAssessment = [];
+    let randomGetAssessment = [];
 
+    for (let i = 0; i < pairs.length; i++) {
+        randomAssessment.push(Math.floor(Math.random() * (maxAssesment - minAssesment + 1) + minAssesment));
+        randomGetAssessment.push(pairs[i].concat(randomAssessment[i]));
+    }
+    return randomGetAssessment;
+}
 
 
 
@@ -68,4 +69,3 @@ document.writeln(`<ul><li>${createPair}</li>
                       <li>${studentWithAssessment}</li>
                       <li>${pairsAndAssessment}</li>
                     </ul>`);
-
