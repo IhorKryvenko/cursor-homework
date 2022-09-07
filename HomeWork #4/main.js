@@ -62,7 +62,7 @@ function randomGetAssessment(pairs) {
 const createPair = getPairs(students);
 const pairsWithTheme = addThemesForPairs(createPair);
 const studentWithAssessment = studentGetAssessment(students, marks);
-const pairsAndAssessment = randomGetAssessment(createPair);
+const pairsAndAssessment = randomGetAssessment(pairsWithTheme);
 
 document.writeln(`<ul><li>${createPair}</li>
                       <li>${pairsWithTheme}</li>
