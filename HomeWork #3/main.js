@@ -96,7 +96,7 @@ function getRandomPassword(lengthPass = 8) {
 function deleteLetters(letter, word) {
     let deleteLetter = '';
     let letterToLowerCase = letter.toLowerCase();
-    let wordToLowerCase = word[i].toLowerCase();
+    let wordToLowerCase = word.toLowerCase();
     for (i = 0; i < word.length; i++) {
         if (letterToLowerCase !== wordToLowerCase) {
             deleteLetter += word[i]
