@@ -98,7 +98,7 @@ function deleteLetters(letter, word) {
     let letterToLowerCase = letter.toLowerCase();
     let wordToLowerCase = word.toLowerCase();
     for (i = 0; i < word.length; i++) {
-        if (letterToLowerCase !== wordToLowerCase) {
+        if (letterToLowerCase !== wordToLowerCase[i]) {
             deleteLetter += word[i]
         }
     }
