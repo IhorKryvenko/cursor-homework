@@ -5,6 +5,7 @@ function getRandomArray(length = 3, min = 1, max = 10) {
         let randomNumber = Math.floor(Math.random() * (max - min + 1) + min);
         arrRandomNumber.push(randomNumber);
     }
+    return arrRandomNumber
 }
 
 getRandomArray(50, 1, 10)
@@ -35,7 +36,7 @@ function getMedian(...numbers) {
         } else {
             median = numbers[medianIndex]
         }
-    console.log(median)
+    return median
     }
 }
 getMedian(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2, 2);
@@ -62,6 +63,6 @@ countPositiveNumbers(1, -2, 3, -4, -5, 6)
 // Приклад: getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2) -> [55, 55]
 function getDividedByFive(...numbers) {
     let divideNumber = numbers.filter(function(number){return number % 5 === 0})
-    console.log(divideNumber)
+    return divideNumber
 }
 getDividedByFive(6, 2, 55, 11, 78, 2, 55, 77, 57, 87, 23, 2, 56, 3, 2);
